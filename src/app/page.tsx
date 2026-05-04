@@ -239,7 +239,7 @@ export default function Photobooth() {
       <div className="max-w-5xl w-full relative z-10">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#20B2AA] to-[#40E0D0] mb-4 tracking-tighter drop-shadow-lg uppercase leading-tight">SJP2 Photobooth</h1>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#20B2AA] to-[#40E0D0] mb-4 tracking-tighter drop-shadow-lg uppercase leading-tight">SJP2 Photobooth</h1>
           <p className="text-gray-300 text-base sm:text-lg md:text-xl font-medium tracking-wide bg-white/5 inline-block px-6 py-2 rounded-full backdrop-blur-md border border-white/10 shadow-lg">Capture your special moments</p>
         </div>
 
@@ -349,7 +349,7 @@ export default function Photobooth() {
                   </div>
                 </div>
 
-                <div className="bg-[#40E0D0]/10 p-6 rounded-2xl border border-[#40E0D0]/20">
+                <div className="bg-[#40E0D0]/10 p-4 sm:p-6 rounded-2xl border border-[#40E0D0]/20 overflow-hidden">
                   <h3 className="text-xl font-semibold mb-2 text-[#40E0D0] flex items-center gap-2">
                     <Mail className="w-6 h-6" />
                     Get Digital Copy
@@ -362,15 +362,15 @@ export default function Photobooth() {
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#40E0D0]/50 bg-slate-900/50 text-white placeholder-gray-500"
+                      className="w-full px-4 py-3 rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#40E0D0]/50 bg-slate-900/50 text-white placeholder-gray-500 text-sm"
                     />
                     <button
                       onClick={sendEmail}
                       disabled={isSending || !email}
-                      className="w-full sm:w-auto px-8 py-3 bg-[#40E0D0] hover:bg-[#3bcac0] text-slate-900 rounded-xl font-bold transition-all shadow-lg hover:shadow-[#40E0D0]/20 disabled:opacity-50 flex items-center justify-center min-w-[120px]"
+                      className="w-full sm:w-auto px-6 py-3 bg-[#40E0D0] hover:bg-[#3bcac0] text-slate-900 rounded-xl font-bold transition-all shadow-lg hover:shadow-[#40E0D0]/20 disabled:opacity-50 flex items-center justify-center"
                     >
                       {isSending ? <Loader2 className="w-5 h-5 animate-spin" /> : (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 whitespace-nowrap">
                           <Send className="w-4 h-4" />
                           <span>Send</span>
                         </div>
