@@ -21,7 +21,9 @@ export async function POST(request: Request) {
     const drive = google.drive({ version: 'v3', auth });
 
     // The folder ID where uploads will be saved
-    const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+    const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID?.replace(/"/g, '');
+    console.log("Drive Upload Debug - Folder ID:", folderId);
+    console.log("Drive Upload Debug - Service Email:", process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
 
     // Convert base64 to buffer and stream
     const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '');
