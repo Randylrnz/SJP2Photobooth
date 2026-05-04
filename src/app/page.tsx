@@ -238,12 +238,12 @@ export default function Photobooth() {
     <div className="min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_top,_rgba(64,224,208,0.15),_transparent_50%)] text-white font-sans selection:bg-[#40E0D0] selection:text-white flex flex-col items-center py-10 px-4 relative overflow-hidden">
       <div className="max-w-5xl w-full relative z-10">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#20B2AA] to-[#40E0D0] mb-4 tracking-tighter drop-shadow-lg uppercase">SJP2 Photobooth</h1>
-          <p className="text-gray-300 text-xl font-medium tracking-wide bg-white/5 inline-block px-6 py-2 rounded-full backdrop-blur-md border border-white/10 shadow-lg">Capture your special moments</p>
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#20B2AA] to-[#40E0D0] mb-4 tracking-tighter drop-shadow-lg uppercase leading-tight">SJP2 Photobooth</h1>
+          <p className="text-gray-300 text-base sm:text-lg md:text-xl font-medium tracking-wide bg-white/5 inline-block px-6 py-2 rounded-full backdrop-blur-md border border-white/10 shadow-lg">Capture your special moments</p>
         </div>
 
-        <div className="bg-slate-900/40 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] transition-all">
+        <div className="bg-slate-900/40 backdrop-blur-2xl border border-white/10 p-5 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] transition-all">
           {/* Main Content Area */}
           {!finalImage ? (
             <div className="flex flex-col items-center justify-center">
@@ -301,7 +301,7 @@ export default function Photobooth() {
 
               {/* Mini Preview Slots */}
               {photos.length > 0 && !finalImage && (
-                <div className="flex gap-4 mt-8">
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8">
                   {[0, 1, 2].map((i) => (
                     <div key={i} className="w-24 h-24 rounded-lg bg-gray-200 overflow-hidden border-2 border-white shadow-md">
                       {photos[i] && (
@@ -356,20 +356,25 @@ export default function Photobooth() {
                   </h3>
                   <p className="text-gray-400 text-sm mb-4">Enter your email to receive a high-quality copy of your photos.</p>
                   
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <input
                       type="email"
                       placeholder="your@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#40E0D0]/50 bg-slate-900/50 text-white placeholder-gray-500"
+                      className="w-full px-4 py-3 rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#40E0D0]/50 bg-slate-900/50 text-white placeholder-gray-500"
                     />
                     <button
                       onClick={sendEmail}
                       disabled={isSending || !email}
-                      className="px-6 py-3 bg-[#40E0D0] hover:bg-[#3bcac0] text-white rounded-xl font-medium transition-colors disabled:opacity-50 flex items-center justify-center min-w-[100px]"
+                      className="w-full sm:w-auto px-8 py-3 bg-[#40E0D0] hover:bg-[#3bcac0] text-slate-900 rounded-xl font-bold transition-all shadow-lg hover:shadow-[#40E0D0]/20 disabled:opacity-50 flex items-center justify-center min-w-[120px]"
                     >
-                      {isSending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                      {isSending ? <Loader2 className="w-5 h-5 animate-spin" /> : (
+                        <div className="flex items-center gap-2">
+                          <Send className="w-4 h-4" />
+                          <span>Send</span>
+                        </div>
+                      )}
                     </button>
                   </div>
                   {emailSent && (
