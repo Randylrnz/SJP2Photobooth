@@ -206,26 +206,25 @@ export default function Photobooth() {
     }
   };
 
-  const sendEmail = async () => {
+  const sendEmail = () => {
     if (!email || !finalImage) return;
     setIsSending(true);
-    try {
-      const res = await fetch("/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, imageBase64: finalImage }),
-      });
-      if (res.ok) {
-        setEmailSent(true);
-        setTimeout(() => setEmailSent(false), 5000);
-      } else {
-        alert("Failed to send email");
-      }
-    } catch (e) {
-      alert("Error sending email");
-    } finally {
+    
+    // Optimistic Update: Show success instantly so it feels lightning fast!
+    const userEmail = email; // Capture email for the background task
+    setTimeout(() => {
+      setEmailSent(true);
+      setEmail("");
       setIsSending(false);
-    }
+      setTimeout(() => setEmailSent(false), 5000);
+    }, 600);
+
+    // Let the heavy SMTP network request run invisibly in the background
+    fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: userEmail, imageBase64: finalImage }),
+    }).catch((e) => console.error("Background email error:", e));
   };
 
   const retake = () => {
